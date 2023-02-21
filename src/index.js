@@ -1,18 +1,79 @@
 import _ from 'lodash';
-import printMe from './print.js';
+import './style.css';
 
- function component() {
-   const element = document.createElement('div');
-  const btn = document.createElement('button');
+function createSidebar() {
+  const sidebar = document.createElement('div')
+  const sideNav = document.createElement('nav')
+  const btnNew = document.createElement('button')
+  const title = document.createElement('h1')
+  const projDiv = document.createElement('div')
+  const projects = document.createElement('ul')
+  const projects2 = document.createElement('ul')
+  const test = document.createElement('li')
+  const test1 = document.createElement('li')
+  const test2 = document.createElement('li')
+  const test3 = document.createElement('li')
+  const test4 = document.createElement('li')
+  const test5 = document.createElement('li')
 
-   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  
+  sidebar.classList.add('sidebar')
+  projDiv.classList.add('projDiv')
+  sideNav.classList.add('sideNav')
+  btnNew.classList.add('btnNew')
+  projects.classList.add('project', 'closed')
+  projects2.classList.add('project', 'closed')
+  
+  test.innerHTML = 'My first project'
+  test1.innerHTML = 'My second project'
+  test2.innerHTML = 'My third project'
+  test3.innerHTML = 'My first project'
+  test4.innerHTML = 'My second project'
+  test5.innerHTML = 'My third project have a very long title'
+  title.innerHTML = 'Projects'
+  btnNew.innerHTML = 'New Project'
+  projects.innerHTML = 'This is a Project'
+  projects2.innerHTML = 'This is another Project'
+  
 
-  btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
+  projects.appendChild(test)
+  projects.appendChild(test1)
+  projects.appendChild(test2)
+  projects2.appendChild(test3)
+  projects2.appendChild(test4)
+  projects2.appendChild(test5)
+  sideNav.appendChild(btnNew)
+  projDiv.appendChild(projects)
+  projDiv.appendChild(projects2)
+  sidebar.appendChild(title)
+ 
+  sidebar.appendChild(projDiv)  
 
-  element.appendChild(btn);
+  return sidebar
+}
 
-   return element;
- }
+document.body.appendChild(createSidebar());
+document.body.appendChild(document.createElement('main'));
 
- document.body.appendChild(component());
+
+const FolderOpener = (() => {
+  const folders = document.querySelectorAll('.project')
+  folders.forEach(folder => folder.addEventListener('click', () => {
+    if (folder.classList.contains('closed')) {
+      folder.classList.remove('closed')
+      folder.classList.add('opened')
+
+      for (let i = 1; i < folder.childNodes.length; i++) {
+        folder.childNodes[i].style.display = 'block'
+      }
+      
+    } else {
+      folder.classList.add('closed')
+      folder.classList.remove('opened')
+
+      for (let i = 1; i < folder.childNodes.length; i++) {
+        folder.childNodes[i].style.display = 'none'
+      }
+    }
+  }))
+})();
