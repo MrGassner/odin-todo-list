@@ -76,7 +76,7 @@ function createHeader() {
   return header
 }
 
-
+Project()
 document.body.appendChild(createSidebar());
 document.body.appendChild(createHeader());
 document.body.appendChild(document.createElement('main'));
@@ -102,4 +102,22 @@ const FolderOpener = (() => {
       }
     }
   }))
+})();
+
+const modalFunctions = (() => {
+  const modal = document.querySelector('.modal')
+  const openModal = document.querySelector('.add')
+  const closeModal = document.querySelector('.close')
+  const submitModal = document.querySelector('.submit')
+  
+  modal.style.display = 'none'
+
+  openModal.addEventListener('click', () => modal.style.display = 'block')
+  closeModal.addEventListener('click', () => modal.style.display = 'none')
+  submitModal.addEventListener('click', () => {
+
+    console.log('teste')
+
+  })
+
 })();
