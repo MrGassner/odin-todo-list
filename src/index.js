@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import './style.css';
 import Project from './projects.js'
+import { ProjectManager } from './projects.js'
 
 function createSidebar() {
   const sidebar = document.createElement('div')
@@ -17,7 +18,7 @@ function createSidebar() {
   const test4 = document.createElement('li')
   const test5 = document.createElement('li')
 
-  
+
   sidebar.classList.add('sidebar')
   projDiv.classList.add('projDiv')
   sideNav.classList.add('sideNav')
@@ -25,6 +26,7 @@ function createSidebar() {
   projects.classList.add('project', 'closed')
   projects2.classList.add('project', 'closed')
   
+
   test.innerHTML = 'My first project'
   test1.innerHTML = 'My second project'
   test2.innerHTML = 'My third project'
@@ -60,6 +62,7 @@ function createHeader() {
   const addProject = document.createElement('button')
   const delProject = document.createElement('button')
 
+  projTitle.classList.add('currentTitle')
   headerNav.classList.add('headerNav')
   addProject.classList.add('add')
   delProject.classList.add('del')
@@ -84,6 +87,8 @@ document.body.appendChild(document.createElement('main'));
 
 const FolderOpener = (() => {
   const folders = document.querySelectorAll('.project')
+  const currentTitle = document.querySelector('.currentTitle')
+
   folders.forEach(folder => folder.addEventListener('click', () => {
     if (folder.classList.contains('closed')) {
       folder.classList.remove('closed')
@@ -101,6 +106,9 @@ const FolderOpener = (() => {
         folder.childNodes[i].style.display = 'none'
       }
     }
+
+    currentTitle.innerHTML = folder.firstChild.textContent
+
   }))
 })();
 
@@ -114,10 +122,11 @@ const modalFunctions = (() => {
 
   openModal.addEventListener('click', () => modal.style.display = 'block')
   closeModal.addEventListener('click', () => modal.style.display = 'none')
-  submitModal.addEventListener('click', () => {
+  submitModal.addEventListener('click', event => {
 
-    console.log('teste')
-
+    event.preventDefault()
+    
+    modal.style.display = 'none'
+    ProjectManager(document.querySelector('.modalProjTitle').value, 'create')
   })
-
 })();

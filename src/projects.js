@@ -1,7 +1,5 @@
 export default function projects() {
-    const projects = []
-
-    function newProject() {
+    const newProjectModal = (() => {
         const modal = document.createElement('div')
         const modalBody = document.createElement('div')
         const modalTitle = document.createElement('h2')
@@ -37,7 +35,44 @@ export default function projects() {
         modal.appendChild(modalBody)
 
         document.body.appendChild(modal)
-    }
+    })();   
+}
 
-    return newProject()
+let userProjects = []
+
+export function ProjectManager(title, action) {
+    switch (action) {
+        case 'create':
+            addProject(title)
+            break;
+        case 'delete':
+            deleteProject(title)
+            break;
+        default:
+            break;
+    }
+}
+
+function addProject(title) {
+    userProjects.push(title)
+    addToDisplay()
+    console.log(userProjects)
+    return 
+}
+
+function deleteProject(title) {
+    console.log(title)
+}
+
+function addToDisplay() {
+    const projDiv = document.querySelector('.projDiv')
+    projDiv.innerHTML = ''
+
+    userProjects.forEach(title => {
+        const folder = document.createElement('ul')
+        folder.innerHTML = title
+        folder.classList.add('project', 'closed')
+
+        projDiv.appendChild(folder)
+    })
 }
