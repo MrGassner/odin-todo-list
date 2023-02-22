@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import './style.css';
+import Project from './projects.js'
 
 function createSidebar() {
   const sidebar = document.createElement('div')
@@ -52,7 +53,32 @@ function createSidebar() {
   return sidebar
 }
 
+function createHeader() {
+  const header = document.createElement('header')
+  const headerNav = document.createElement('nav')
+  const projTitle = document.createElement('h1')
+  const addProject = document.createElement('button')
+  const delProject = document.createElement('button')
+
+  headerNav.classList.add('headerNav')
+  addProject.classList.add('add')
+  delProject.classList.add('del')
+
+  projTitle.innerHTML = 'This is a Project'
+  addProject.innerHTML = '+'
+  delProject.innerHTML = 'x'
+
+  headerNav.appendChild(addProject)
+  headerNav.appendChild(delProject)
+  header.appendChild(projTitle)
+  header.appendChild(headerNav)
+
+  return header
+}
+
+
 document.body.appendChild(createSidebar());
+document.body.appendChild(createHeader());
 document.body.appendChild(document.createElement('main'));
 
 
