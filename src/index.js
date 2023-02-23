@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import './style.css';
-import Project from './projects.js'
+import Modals from './modals.js';
 import { ProjectManager, addToDisplay } from './projects.js'
 
 function createSidebar() {
@@ -40,9 +40,9 @@ function createHeader() {
   addProject.classList.add('add')
   delProject.classList.add('del')
 
-  projTitle.innerHTML = 'This is a Project'
   addProject.innerHTML = '+'
   delProject.innerHTML = 'x'
+  projTitle.innerHTML = ''
 
   headerNav.appendChild(addProject)
   headerNav.appendChild(delProject)
@@ -52,10 +52,11 @@ function createHeader() {
   return header
 }
 
-Project()
+
 document.body.appendChild(createSidebar());
 document.body.appendChild(createHeader());
 document.body.appendChild(document.createElement('main'));
+Modals()
 addToDisplay()
 
 const FolderOpener = (() => {
@@ -70,6 +71,7 @@ const FolderOpener = (() => {
       for (let i = 1; i < folder.childNodes.length; i++) {
         folder.childNodes[i].style.display = 'block'
       }
+      currentTitle.innerHTML = folder.firstChild.textContent
       
     } else {
       folder.classList.add('closed')
@@ -79,16 +81,12 @@ const FolderOpener = (() => {
         folder.childNodes[i].style.display = 'none'
       }
     }
-
-    currentTitle.innerHTML = folder.firstChild.textContent
-
   }))
 })();
 
-const modalFunctions = (() => {
+const addModalFunctions = (() => {
   const addModal = document.querySelector('.addModal')
   const openModal = document.querySelector('.add')
-  const deleteModal = document.querySelector('.del')
   const closeModal = document.querySelector('.close')
   const submitModal = document.querySelector('.submit')
   
@@ -100,7 +98,30 @@ const modalFunctions = (() => {
     addModal.style.display = 'none'
     ProjectManager(document.querySelector('.modalProjTitle').value, 'create')
   })
+})();
+
+const delModalFunctions = (() => {
+  const delModal = document.querySelector('.delModal')
+  const openModal = document.querySelector('.del')
+  const closeModal = document.querySelector('.closeDel')
+  const deleteModal = document.querySelector('.delete')
+  
+  delModal.style.display = 'none'
+
+  closeModal.addEventListener('click', () => delModal.style.display = 'none')
+  openModal.addEventListener('click', () => {
+    delModal.style.display = 'block'
+
+    const modalContent = document.querySelector('.modalContent')
+    const currentTitle = document.querySelector('.currentTitle')
+
+    modalContent.innerHTML = currentTitle.textContent
+  })  
+
   deleteModal.addEventListener('click', () => {
-    console.log('delete')
+    delModal.style.display = 'none'
+
+    ProjectManager(document.querySelector('.currentTitle').textContent, 'delete')
+    window.location.reload()
   })
 })();

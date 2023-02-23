@@ -170,7 +170,7 @@ main {
     grid-column: 2 / 4;
 }
 
-/* modal */
+/* Add modal */
 .addModal {
     position: absolute;
     margin: auto;
@@ -233,4 +233,33 @@ main {
     color: #c5c5c5;
     height: 50%;
 }
+
+/* Delete modal */
+.delModal {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    width: 50%;
+    height: 200px; 
+    background-color: #c5c5c5;
+}
+    
+.delModalBody {
+    display: grid;
+    grid-template-rows: 25% 1fr 30%;
+    width: 100%;
+    height: 100%;
+}
+
+.modalContent {
+    color: #0f0f0f;
+    margin: auto;
+    cursor: default; 
+}
+
+
 
