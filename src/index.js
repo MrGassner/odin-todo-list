@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import './style.css';
 import Project from './projects.js'
-import { ProjectManager } from './projects.js'
+import { ProjectManager, addToDisplay } from './projects.js'
 
 function createSidebar() {
   const sidebar = document.createElement('div')
@@ -9,47 +9,20 @@ function createSidebar() {
   const btnNew = document.createElement('button')
   const title = document.createElement('h1')
   const projDiv = document.createElement('div')
-  const projects = document.createElement('ul')
-  const projects2 = document.createElement('ul')
-  const test = document.createElement('li')
-  const test1 = document.createElement('li')
-  const test2 = document.createElement('li')
-  const test3 = document.createElement('li')
-  const test4 = document.createElement('li')
-  const test5 = document.createElement('li')
 
 
   sidebar.classList.add('sidebar')
   projDiv.classList.add('projDiv')
   sideNav.classList.add('sideNav')
   btnNew.classList.add('btnNew')
-  projects.classList.add('project', 'closed')
-  projects2.classList.add('project', 'closed')
   
 
-  test.innerHTML = 'My first project'
-  test1.innerHTML = 'My second project'
-  test2.innerHTML = 'My third project'
-  test3.innerHTML = 'My first project'
-  test4.innerHTML = 'My second project'
-  test5.innerHTML = 'My third project have a very long title'
   title.innerHTML = 'Projects'
-  btnNew.innerHTML = 'New Project'
-  projects.innerHTML = 'This is a Project'
-  projects2.innerHTML = 'This is another Project'
-  
+  btnNew.innerHTML = 'New Project'  
 
-  projects.appendChild(test)
-  projects.appendChild(test1)
-  projects.appendChild(test2)
-  projects2.appendChild(test3)
-  projects2.appendChild(test4)
-  projects2.appendChild(test5)
+
   sideNav.appendChild(btnNew)
-  projDiv.appendChild(projects)
-  projDiv.appendChild(projects2)
   sidebar.appendChild(title)
- 
   sidebar.appendChild(projDiv)  
 
   return sidebar
@@ -83,7 +56,7 @@ Project()
 document.body.appendChild(createSidebar());
 document.body.appendChild(createHeader());
 document.body.appendChild(document.createElement('main'));
-
+addToDisplay()
 
 const FolderOpener = (() => {
   const folders = document.querySelectorAll('.project')
@@ -113,20 +86,21 @@ const FolderOpener = (() => {
 })();
 
 const modalFunctions = (() => {
-  const modal = document.querySelector('.modal')
+  const addModal = document.querySelector('.addModal')
   const openModal = document.querySelector('.add')
+  const deleteModal = document.querySelector('.del')
   const closeModal = document.querySelector('.close')
   const submitModal = document.querySelector('.submit')
   
-  modal.style.display = 'none'
+  addModal.style.display = 'none'
 
-  openModal.addEventListener('click', () => modal.style.display = 'block')
-  closeModal.addEventListener('click', () => modal.style.display = 'none')
-  submitModal.addEventListener('click', event => {
-
-    event.preventDefault()
-    
-    modal.style.display = 'none'
+  openModal.addEventListener('click', () => addModal.style.display = 'block')
+  closeModal.addEventListener('click', () => addModal.style.display = 'none')
+  submitModal.addEventListener('click', () => {
+    addModal.style.display = 'none'
     ProjectManager(document.querySelector('.modalProjTitle').value, 'create')
+  })
+  deleteModal.addEventListener('click', () => {
+    console.log('delete')
   })
 })();

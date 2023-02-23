@@ -16,7 +16,7 @@ export default function projects() {
         projTitle.classList.add('modalProjTitle')
         projTitle.required = true
         modalBody.classList.add('modalBody')
-        modal.classList.add('modal')
+        modal.classList.add('addModal')
         closeModal.classList.add('close')
         submitModal.classList.add('submit')
         submitModal.type = 'submit'
@@ -67,14 +67,14 @@ function deleteProject(title) {
     console.log(title)
 }
 
-function addToDisplay() {
+export function addToDisplay() {
     const projDiv = document.querySelector('.projDiv')
     projDiv.innerHTML = ''
 
     if (localStorage.projects ) {
         userProjects = JSON.parse(localStorage.getItem('projects'))
     }
-    
+
     userProjects.forEach(title => {
         const folder = document.createElement('ul')
         folder.innerHTML = title
