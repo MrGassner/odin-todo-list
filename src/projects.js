@@ -54,10 +54,13 @@ export function ProjectManager(title, action) {
 }
 
 function addProject(title) {
+    if (localStorage.projects) {
+        userProjects = JSON.parse(localStorage.getItem('projects'))
+    }
+
     userProjects.push(title)
+    localStorage.projects = JSON.stringify(userProjects)
     addToDisplay()
-    console.log(userProjects)
-    return 
 }
 
 function deleteProject(title) {
@@ -68,6 +71,10 @@ function addToDisplay() {
     const projDiv = document.querySelector('.projDiv')
     projDiv.innerHTML = ''
 
+    if (localStorage.projects ) {
+        userProjects = JSON.parse(localStorage.getItem('projects'))
+    }
+    
     userProjects.forEach(title => {
         const folder = document.createElement('ul')
         folder.innerHTML = title
@@ -76,3 +83,5 @@ function addToDisplay() {
         projDiv.appendChild(folder)
     })
 }
+
+
