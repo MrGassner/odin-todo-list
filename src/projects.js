@@ -18,7 +18,7 @@ function addProject(title) {
         userProjects = JSON.parse(localStorage.getItem('projects'))
     }
 
-    userProjects.push(title)
+    userProjects.push([title, []])
     localStorage.projects = JSON.stringify(userProjects)
     addToDisplay()
 }
@@ -42,7 +42,7 @@ export function addToDisplay() {
 
     userProjects.forEach(title => {
         const folder = document.createElement('ul')
-        folder.innerHTML = title
+        folder.innerHTML = title[0]
         folder.classList.add('project', 'closed')
 
         projDiv.appendChild(folder)
@@ -50,7 +50,6 @@ export function addToDisplay() {
 }
 
 export function addTaskBtn() {
-    const currentTitle = document.querySelector('.currentTitle')
     const main = document.querySelector('main')
     const addTask = document.createElement('button')
 
@@ -60,8 +59,21 @@ export function addTaskBtn() {
     main.appendChild(addTask)
 }
 
-export function addTask() {
-    console.log('teste')
+export function addTask(taskTitle, taskDate, taskPrior) {
+    const currTitle = document.querySelector('.currentTitle').innerHTML
+
+    if (localStorage.projects) {
+        userProjects = JSON.parse(localStorage.getItem('projects'))
+
+        userProjects.map((x, index) => {
+            if ( x[0] === currTitle ) {
+
+                userProjects[index][1].push({title: taskTitle, date: taskDate, priority: taskPrior})
+                localStorage.projects = JSON.stringify(userProjects)
+                console.log(userProjects[index])
+            }
+        })
+    }
 }
     
 

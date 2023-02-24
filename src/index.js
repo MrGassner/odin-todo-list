@@ -141,5 +141,12 @@ const taskModalFunctions = (() => {
 
   closeModal.addEventListener('click', () => taskModal.style.display = 'none')
   addTaskBtn.addEventListener('click', () => taskModal.style.display = 'block')
-  submitModal.addEventListener('click', () => addTask())
+  submitModal.addEventListener('click', () =>  {
+
+    const title = document.querySelector('.titleForm').value
+    const date = document.querySelector('.dateForm').value
+    const priority = document.querySelector('input[name="priority"]:checked').value
+
+    addTask(title, date, priority)
+  })    
 })();

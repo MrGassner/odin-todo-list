@@ -111,6 +111,7 @@ export default function modals() {
         priorLow.setAttribute('value', 'Low')
         priorLow.setAttribute('id', 'low')
 
+
         tasksModal.classList.add('tasksModal')
         tasksModalBody.classList.add('tasksModalBody')
         modalTitle.classList.add('modalTitle')
@@ -126,6 +127,9 @@ export default function modals() {
         closeModal.classList.add('closeModal')
         submitModal.classList.add('submitModal')
 
+        titleForm.required = true
+        dateForm.required = true
+        priorHigh.required = true
 
         modalTitle.innerHTML = 'Add New Task'
         submitModal.innerHTML = 'Create'
