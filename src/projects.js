@@ -49,4 +49,19 @@ export function addToDisplay() {
     })
 }
 
+export function addTaskBtn() {
+    const currentTitle = document.querySelector('.currentTitle')
+    const main = document.querySelector('main')
+    const addTask = document.createElement('button')
+
+    addTask.classList.add('addTask')
+    addTask.innerHTML = '+ Add Task'
+
+    main.appendChild(addTask)
+}
+
+export function addTask() {
+    console.log('teste')
+}
+    
 

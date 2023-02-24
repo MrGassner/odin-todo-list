@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import './style.css';
 import Modals from './modals.js';
-import { ProjectManager, addToDisplay } from './projects.js'
+import Main from './main.js';
+import { ProjectManager, addToDisplay, addTask, addTaskBtn } from './projects.js'
 
 function createSidebar() {
   const sidebar = document.createElement('div')
@@ -58,6 +59,7 @@ document.body.appendChild(createHeader());
 document.body.appendChild(document.createElement('main'));
 Modals()
 addToDisplay()
+addTaskBtn()
 
 const FolderOpener = (() => {
   const folders = document.querySelectorAll('.project')
@@ -71,7 +73,9 @@ const FolderOpener = (() => {
       for (let i = 1; i < folder.childNodes.length; i++) {
         folder.childNodes[i].style.display = 'block'
       }
-      currentTitle.innerHTML = folder.firstChild.textContent
+
+      currentTitle.innerHTML = folder.firstChild.textContent;
+      
       
     } else {
       folder.classList.add('closed')
@@ -97,6 +101,7 @@ const addModalFunctions = (() => {
   submitModal.addEventListener('click', () => {
     addModal.style.display = 'none'
     ProjectManager(document.querySelector('.modalProjTitle').value, 'create')
+
   })
 })();
 
@@ -124,4 +129,17 @@ const delModalFunctions = (() => {
     ProjectManager(document.querySelector('.currentTitle').textContent, 'delete')
     window.location.reload()
   })
+})();
+
+const taskModalFunctions = (() => {
+  const taskModal = document.querySelector('.tasksModal')
+  const addTaskBtn = document.querySelector('.addTask')
+  const closeModal = document.querySelector('.closeModal')
+  const submitModal = document.querySelector('.submitModal')
+
+  taskModal.style.display = 'none'
+
+  closeModal.addEventListener('click', () => taskModal.style.display = 'none')
+  addTaskBtn.addEventListener('click', () => taskModal.style.display = 'block')
+  submitModal.addEventListener('click', () => addTask())
 })();

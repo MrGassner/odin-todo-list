@@ -71,4 +71,89 @@ export default function modals() {
 
         document.body.appendChild(delModal)
     })();
+
+    const addTasks = (() => {
+        const tasksModal = document.createElement('div')
+        const tasksModalBody = document.createElement('div')
+        const modalTitle = document.createElement('h2')
+        const tasksForm = document.createElement('form')
+        const titleForm = document.createElement('input')
+        const dateForm = document.createElement('input')
+        const priorDiv = document.createElement('div')
+        const priorTitle = document.createElement('h3')
+        const highLabel = document.createElement('label')
+        const priorHigh = document.createElement('input')
+        const mediumLabel = document.createElement('label')
+        const priorMedium = document.createElement('input')
+        const lowLabel = document.createElement('label')
+        const priorLow = document.createElement('input')
+        const modalBtn = document.createElement('div')
+        const closeModal = document.createElement('button')
+        const submitModal = document.createElement('button')
+
+        submitModal.setAttribute('type', 'submit')
+        // submitModal.setAttribute('form', 'newTask')
+        tasksForm.setAttribute('id', 'newTask')
+        dateForm.setAttribute('type', 'date')
+        highLabel.setAttribute('for', 'high')
+        priorHigh.setAttribute('type', 'radio')
+        priorHigh.setAttribute('name', 'priority')
+        priorHigh.setAttribute('value', 'High')
+        priorHigh.setAttribute('id', 'high')
+        mediumLabel.setAttribute('for', 'medium')
+        priorMedium.setAttribute('type', 'radio')
+        priorMedium.setAttribute('name', 'priority')
+        priorMedium.setAttribute('value', 'Medium')
+        priorMedium.setAttribute('id', 'medium')
+        lowLabel.setAttribute('for', 'low')
+        priorLow.setAttribute('type', 'radio')
+        priorLow.setAttribute('name', 'priority')
+        priorLow.setAttribute('value', 'Low')
+        priorLow.setAttribute('id', 'low')
+
+        tasksModal.classList.add('tasksModal')
+        tasksModalBody.classList.add('tasksModalBody')
+        modalTitle.classList.add('modalTitle')
+        tasksForm.classList.add('tasksForm')
+        priorDiv.classList.add('priorDiv')
+        priorTitle.classList.add('priorTitle')
+        titleForm.classList.add('titleForm')
+        dateForm.classList.add('dateForm')
+        priorHigh.classList.add('priorityForm')
+        priorMedium.classList.add('priorityForm')
+        priorLow.classList.add('priorityForm')
+        modalBtn.classList.add('modalBtn')
+        closeModal.classList.add('closeModal')
+        submitModal.classList.add('submitModal')
+
+
+        modalTitle.innerHTML = 'Add New Task'
+        submitModal.innerHTML = 'Create'
+        closeModal.innerHTML = 'Cancel'
+        titleForm.placeholder = 'Task Title'
+        priorTitle.innerHTML = 'Priority'
+        highLabel.innerHTML = 'High'
+        mediumLabel.innerHTML = 'Medium'
+        lowLabel.innerHTML = 'Low'
+
+
+        priorDiv.appendChild(priorTitle)
+        priorDiv.appendChild(priorHigh)
+        priorDiv.appendChild(highLabel)
+        priorDiv.appendChild(priorMedium)
+        priorDiv.appendChild(mediumLabel)
+        priorDiv.appendChild(priorLow)
+        priorDiv.appendChild(lowLabel)
+        tasksForm.appendChild(titleForm)
+        tasksForm.appendChild(dateForm)
+        tasksForm.appendChild(priorDiv)
+        modalBtn.appendChild(submitModal)
+        modalBtn.appendChild(closeModal)
+        tasksModalBody.appendChild(modalTitle)
+        tasksModalBody.appendChild(tasksForm)
+        tasksModalBody.appendChild(modalBtn)
+        tasksModal.appendChild(tasksModalBody)
+
+        document.body.appendChild(tasksModal)
+    })();
 }

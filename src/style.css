@@ -167,7 +167,20 @@ header {
 
 /* main */
 main {
-    grid-column: 2 / 4;
+    padding: 20px;
+}
+
+.addTask {
+    width: 200px;
+    height: 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #c5c5c5;
+    cursor: pointer;
+}
+
+.addTask:hover {
+    background-color: #727272;
 }
 
 /* Add modal */
@@ -261,5 +274,63 @@ main {
     cursor: default; 
 }
 
+/* Tasks modal */
+.tasksModal {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    width: 50%;
+    height: 200px; 
+    background-color: #c5c5c5; 
+}
+
+.tasksModalBody {
+    display: grid;
+    grid-template-rows: 25% 1fr 30%;
+    width: 100%;
+    height: 100%;   
+}
+
+.tasksForm {
+    padding: 5px;
+    margin: 0 15px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+    align-items: center;
+}
+
+.titleForm {
+    grid-column: 1 / 1;
+}
+
+.dateForm {
+    grid-column: 1 / 1;
+}
+
+.priorDiv {
+    grid-column: 2 / 2;
+    grid-row: 1 / 3;
+}
+
+.tasksForm> input {
+    background-color: transparent;
+    height: 30px;
+}
+
+label {
+    color: black;
+}
+
+h3 {
+    color: black;
+    margin: 0;
+    text-align: center;
+}
 
 
