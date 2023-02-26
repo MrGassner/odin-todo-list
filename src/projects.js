@@ -44,6 +44,11 @@ export function addToDisplay() {
         const folder = document.createElement('ul')
         folder.innerHTML = title[0]
         folder.classList.add('project', 'closed')
+        title[1].forEach(task => {
+            const titleTask = document.createElement('li')
+            titleTask.innerHTML = task['title']
+            folder.appendChild(titleTask)
+        })
 
         projDiv.appendChild(folder)
     })
