@@ -92,7 +92,7 @@ export default function modals() {
         const submitModal = document.createElement('button')
 
         submitModal.setAttribute('type', 'submit')
-        // submitModal.setAttribute('form', 'newTask')
+        submitModal.setAttribute('form', 'newTask')
         tasksForm.setAttribute('id', 'newTask')
         dateForm.setAttribute('type', 'date')
         highLabel.setAttribute('for', 'high')

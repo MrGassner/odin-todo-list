@@ -168,6 +168,40 @@ header {
 /* main */
 main {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.tasksDiv {
+    display: grid;
+    gap: 3px;
+}
+
+.titlesDiv {
+    display: grid;
+    grid-template-columns: 1fr 170px 130px 100px;
+    align-items: center;
+    border: 1px solid #c5c5c5;
+    background-color: #c5c5c5;
+    height: 40px;
+}
+
+.titlesDiv > h3 {
+    color: black;
+    
+}
+
+.taskLine {
+    display: grid;
+    padding: 5px;
+    grid-template-columns: 1fr 170px 130px 100px;
+    border: 1px solid #c5c5c5;
+}
+
+.taskLine > h3 {
+    color: #c5c5c5;
 }
 
 .addTask {
