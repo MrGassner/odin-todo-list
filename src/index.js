@@ -72,6 +72,7 @@ const FolderOpener = (() => {
       folder.classList.add('opened')
       addTaskBtn.style.display = 'block'
       addTaskToMain(event.target.firstChild)
+      taskDone()
 
       for (let i = 1; i < folder.childNodes.length; i++) {
         folder.childNodes[i].style.display = 'block'
@@ -155,3 +156,14 @@ const taskModalFunctions = (() => {
     addTask(title, date, priority)
   })    
 })();
+
+const taskDone = (() => {
+  const taskDone = document.querySelectorAll('input[type="checkbox"]')
+  taskDone.forEach(task => task.addEventListener('change', event => {
+    if (event.target.checked) {
+      event.target.parentNode.setAttribute('id', 'done')
+    } else {
+      event.target.parentNode.setAttribute('id', '')
+    }
+  }))
+})

@@ -95,16 +95,32 @@ export function addTaskToMain(event) {
                     const title = document.createElement('h3')
                     const date = document.createElement('h3')
                     const priority = document.createElement('h3')
+                    const taskDone = document.createElement('input')
 
                     taskLine.classList.add('taskLine')
+                    taskDone.setAttribute('type', 'checkbox')
 
                     title.textContent = task['title']                                      
                     date.textContent = task['date']                                       
-                    priority.textContent = task['priority']                                                                              
+                    priority.textContent = task['priority'] 
+
+                    switch (task['priority']) {
+                        case 'High':
+                            taskLine.classList.add('high')
+                            break;
+                        case 'Medium':
+                            taskLine.classList.add('medium')
+                            break;
+                        case 'Low':
+                            taskLine.classList.add('low')
+                            break;
+                    }
+                                                                                              
                     taskLine.appendChild(title)
                     taskLine.appendChild(date)
                     taskLine.appendChild(priority)
-                    
+                    taskLine.appendChild(taskDone)  
+
                     tasks.appendChild(taskLine)
                     main.prepend(tasks)
                 })

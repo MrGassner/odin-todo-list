@@ -175,6 +175,7 @@ main {
 }
 
 .tasksDiv {
+    width: 100%;
     display: grid;
     gap: 3px;
 }
@@ -198,10 +199,32 @@ main {
     padding: 5px;
     grid-template-columns: 1fr 170px 130px 100px;
     border: 1px solid #c5c5c5;
+    align-items: center;
 }
 
 .taskLine > h3 {
     color: #c5c5c5;
+}
+
+input[type='checkbox'] {
+    accent-color: green;
+    height: 18px;
+}
+
+.high {
+    border-color: red;
+}
+
+.medium {
+    border-color: rgb(255, 136, 0);
+}
+
+.low {
+    border-color: rgb(255, 255, 0);
+}
+
+#done {
+    border-color: green;
 }
 
 .addTask {
