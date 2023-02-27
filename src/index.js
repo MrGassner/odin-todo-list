@@ -2,7 +2,7 @@ import _ from 'lodash';
 import './style.css';
 import Modals from './modals.js';
 import Main from './main.js';
-import { ProjectManager, addToDisplay, addTask, addTaskBtn, addTaskToMain } from './projects.js'
+import { ProjectManager, addToDisplay, addTask, addTaskBtn, addTaskToMain, delSingleTask } from './projects.js'
 
 function createSidebar() {
   const sidebar = document.createElement('div')
@@ -73,6 +73,7 @@ const FolderOpener = (() => {
       addTaskBtn.style.display = 'block'
       addTaskToMain(event.target.firstChild)
       taskDone()
+      delTask()
 
       for (let i = 1; i < folder.childNodes.length; i++) {
         folder.childNodes[i].style.display = 'block'
@@ -165,5 +166,15 @@ const taskDone = (() => {
     } else {
       event.target.parentNode.setAttribute('id', '')
     }
+  }))
+})
+
+const delTask = (() => {
+  const currTitle = document.querySelector('.currentTitle')
+  const delTask = document.querySelectorAll('#delTask')
+  delTask.forEach(task => task.addEventListener('click', event => {
+    const task = event.target.parentNode.firstChild.textContent
+    delSingleTask(currTitle.textContent, task)
+    event.target.parentNode.remove()
   }))
 })

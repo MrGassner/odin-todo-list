@@ -68,6 +68,7 @@ export function addTaskToMain(event) {
     const taskDate = document.createElement('h3')
     const taskPriority = document.createElement('h3')
     const taskDone = document.createElement('h3')
+    const taskDel = document.createElement('h3')
     const titlesDiv = document.createElement('div')
 
     
@@ -75,11 +76,13 @@ export function addTaskToMain(event) {
     taskDate.innerHTML = 'Finish Date'
     taskPriority.innerHTML = 'Task Priority'
     taskDone.innerHTML = 'Task Done'
+    taskDel.innerHTML = 'Del'
 
     titlesDiv.appendChild(taskTitle)
     titlesDiv.appendChild(taskDate)
     titlesDiv.appendChild(taskPriority)
     titlesDiv.appendChild(taskDone)
+    titlesDiv.appendChild(taskDel)
     tasks.appendChild(titlesDiv)
 
     titlesDiv.classList.add('titlesDiv')
@@ -96,13 +99,17 @@ export function addTaskToMain(event) {
                     const date = document.createElement('h3')
                     const priority = document.createElement('h3')
                     const taskDone = document.createElement('input')
+                    const delTask = document.createElement('button')
 
-                    taskLine.classList.add('taskLine')
                     taskDone.setAttribute('type', 'checkbox')
+                    delTask.setAttribute('type', 'submit')
+                    delTask.setAttribute('id', 'delTask')
+                    taskLine.classList.add('taskLine')
 
                     title.textContent = task['title']                                      
                     date.textContent = task['date']                                       
                     priority.textContent = task['priority'] 
+                    delTask.innerHTML = 'X'
 
                     switch (task['priority']) {
                         case 'High':
@@ -119,7 +126,8 @@ export function addTaskToMain(event) {
                     taskLine.appendChild(title)
                     taskLine.appendChild(date)
                     taskLine.appendChild(priority)
-                    taskLine.appendChild(taskDone)  
+                    taskLine.appendChild(taskDone) 
+                    taskLine.appendChild(delTask) 
 
                     tasks.appendChild(taskLine)
                     main.prepend(tasks)
@@ -153,6 +161,23 @@ export function addTask(taskTitle, taskDate, taskPrior) {
             }
         })
     }
+}
+
+export function delSingleTask(folder, task) {
+    if (localStorage.projects) {
+        userProjects = JSON.parse(localStorage.getItem('projects'))
+
+        userProjects.map((x, index) => {
+            if ( x[0] === folder ) {
+                userProjects[index][1].map((y, taskIndex) => {
+                    if (y['title'] === task) {
+                        userProjects[index][1].splice(taskIndex, 1)
+                    } 
+                })
+            }
+        })
+    }
+    localStorage.projects = JSON.stringify(userProjects)
 }
     
 

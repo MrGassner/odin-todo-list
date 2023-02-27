@@ -182,28 +182,49 @@ main {
 
 .titlesDiv {
     display: grid;
-    grid-template-columns: 1fr 170px 130px 100px;
+    grid-template-columns: 1fr 150px 100px 100px 50px;
     align-items: center;
+    justify-content: center;
     border: 1px solid #c5c5c5;
     background-color: #c5c5c5;
     height: 40px;
+    padding: 5px;
 }
 
 .titlesDiv > h3 {
     color: black;
-    
+    font-size: 1rem;
+}
+
+#delTask {
+    font-weight: 900;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    border-radius: 100vh;
+    border: transparent;
+    cursor: pointer;
+    background-color: transparent;
+    color: #c5c5c5;
+}
+
+#delTask:hover {
+    color: rgb(151, 12, 12);
 }
 
 .taskLine {
     display: grid;
     padding: 5px;
-    grid-template-columns: 1fr 170px 130px 100px;
+    grid-template-columns: 1fr 150px 100px 100px 50px;
     border: 1px solid #c5c5c5;
     align-items: center;
+    justify-items: center;
 }
 
 .taskLine > h3 {
     color: #c5c5c5;
+    font-size: 1rem;
 }
 
 input[type='checkbox'] {
