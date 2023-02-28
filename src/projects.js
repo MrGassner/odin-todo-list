@@ -92,7 +92,7 @@ export function addTaskToMain(event) {
         userProjects = JSON.parse(localStorage.getItem('projects'))
 
         userProjects.map((x, index) => {
-            if ( x[0] === event.textContent ) {
+            if ( x[0] === event ) {
                 userProjects[index][1].forEach(task => {
                     const taskLine = document.createElement('div')
                     const title = document.createElement('h3')
@@ -149,6 +149,7 @@ export function addTaskBtn() {
 
 export function addTask(taskTitle, taskDate, taskPrior) {
     const currTitle = document.querySelector('.currentTitle').innerHTML
+    const tasksModal = document.querySelector('.tasksModal')
 
     if (localStorage.projects) {
         userProjects = JSON.parse(localStorage.getItem('projects'))
@@ -161,6 +162,10 @@ export function addTask(taskTitle, taskDate, taskPrior) {
             }
         })
     }
+
+    tasksModal.style.display = 'none'
+    document.getElementById('newTask').reset()
+    addTaskToMain(currTitle)
 }
 
 export function delSingleTask(folder, task) {

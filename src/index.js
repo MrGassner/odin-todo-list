@@ -71,7 +71,7 @@ const FolderOpener = (() => {
       folder.classList.remove('closed')
       folder.classList.add('opened')
       addTaskBtn.style.display = 'block'
-      addTaskToMain(event.target.firstChild)
+      addTaskToMain(event.target.firstChild.textContent)
       taskDone()
       delTask()
 
@@ -142,18 +142,20 @@ const taskModalFunctions = (() => {
   const addTaskBtn = document.querySelector('.addTask')
   const closeModal = document.querySelector('.closeModal')
   const submitModal = document.querySelector('.submitModal')
+  const formInput = document.querySelectorAll('input[type="submit"]')
 
   taskModal.style.display = 'none'
   addTaskBtn.style.display = 'none'
 
   closeModal.addEventListener('click', () => taskModal.style.display = 'none')
   addTaskBtn.addEventListener('click', () => taskModal.style.display = 'block')
-  submitModal.addEventListener('click', () =>  {
+  submitModal.addEventListener('click', event =>  {
 
     const title = document.querySelector('.titleForm').value
     const date = document.querySelector('.dateForm').value
     const priority = document.querySelector('input[name="priority"]:checked').value
 
+    event.preventDefault()
     addTask(title, date, priority)
   })    
 })();
