@@ -122,6 +122,16 @@ export function addTaskToMain(event) {
                             taskLine.classList.add('low')
                             break;
                     }
+
+                    switch (task['status']) {
+                        case 'complete':
+                            taskLine.setAttribute('id', 'done')
+                            taskDone.checked = true
+                            break;
+                        case 'incomplete':
+                            taskLine.setAttribute('id', '')
+                            break;
+                    }       
                                                                                               
                     taskLine.appendChild(title)
                     taskLine.appendChild(date)
@@ -157,7 +167,7 @@ export function addTask(taskTitle, taskDate, taskPrior) {
         userProjects.map((x, index) => {
             if ( x[0] === currTitle ) {
 
-                userProjects[index][1].push({title: taskTitle, date: taskDate, priority: taskPrior})
+                userProjects[index][1].push({title: taskTitle, date: taskDate, priority: taskPrior, status: 'incomplete'})
                 localStorage.projects = JSON.stringify(userProjects)
             }
         })
@@ -185,4 +195,20 @@ export function delSingleTask(folder, task) {
     localStorage.projects = JSON.stringify(userProjects)
 }
     
+export function storeTaskStatus(folder, task, status) {
+    if (localStorage.projects) {
+        userProjects = JSON.parse(localStorage.getItem('projects'))
+
+        userProjects.map((x, index) => {
+            if ( x[0] === folder ) {
+                userProjects[index][1].map((y, taskIndex) => {
+                    if (y['title'] === task) {
+                        y['status'] = status
+                    } 
+                })
+            }
+        })
+        localStorage.projects = JSON.stringify(userProjects)
+    }
+}
 

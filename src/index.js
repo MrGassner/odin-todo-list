@@ -2,7 +2,7 @@ import _ from 'lodash';
 import './style.css';
 import Modals from './modals.js';
 import Main from './main.js';
-import { ProjectManager, addToDisplay, addTask, addTaskBtn, addTaskToMain, delSingleTask } from './projects.js'
+import { ProjectManager, addToDisplay, addTask, addTaskBtn, addTaskToMain, delSingleTask, storeTaskStatus } from './projects.js'
 
 function createSidebar() {
   const sidebar = document.createElement('div')
@@ -157,16 +157,21 @@ const taskModalFunctions = (() => {
 
     event.preventDefault()
     addTask(title, date, priority)
+    taskDone()
+    delTask()
   })    
 })();
 
 const taskDone = (() => {
   const taskDone = document.querySelectorAll('input[type="checkbox"]')
+  const currTitle = document.querySelector('.currentTitle')
   taskDone.forEach(task => task.addEventListener('change', event => {
     if (event.target.checked) {
       event.target.parentNode.setAttribute('id', 'done')
+      storeTaskStatus(currTitle.textContent, event.target.parentNode.firstChild.textContent, 'complete')
     } else {
       event.target.parentNode.setAttribute('id', '')
+      storeTaskStatus(currTitle.textContent, event.target.parentNode.firstChild.textContent,'incomplete')
     }
   }))
 })
