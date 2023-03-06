@@ -1,6 +1,6 @@
 # The Odin Project: Todo List
 
-##Project was made with Javascript and Webpack
+## Project was made with Javascript and Webpack
 
 This project utilizes localStorage of the user browser to store the projects/tasks added by the user
 All the modals used on the project are custom made.
